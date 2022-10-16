@@ -27,9 +27,9 @@ public class CategoryService {
            }else{
             Optional<Category>category1= categoryRepository.getCategory(category.getIdCategory());
             if (category1.isPresent()){
-                return categoryRepository.save(category);
+               return category;
             }else{
-                return category;
+                 return categoryRepository.save(category);
             }
         }
     }
@@ -37,7 +37,7 @@ public class CategoryService {
     public Category update(Category category){
         if (category.getIdCategory()!=null) {
             Optional<Category> q = categoryRepository.getCategory(category.getIdCategory());
-            if (!q.isPresent()) {
+            if (q.isPresent()) {
                 if (category.getIdCategory()!=null){
                     q.get().setIdCategory(category.getIdCategory());
                 }
@@ -48,8 +48,10 @@ public class CategoryService {
                 if (category.getDescription()!=null) {
                     q.get().setDescription(category.getDescription());
                 }
-                return categoryRepository.save(q.get());
-                
+                categoryRepository.save(q.get());
+                return q.get();
+            }else{
+                return category;
             }
             
         }

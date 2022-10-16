@@ -27,10 +27,10 @@ public class ClientService {
              return clientRepository.save(client);
            }else{
             Optional<Client>client1= clientRepository.getClien(client.getIdClient());
-            if (!client1.isEmpty()){
-                return clientRepository.save(client);
-            }else{
+            if (client1.isEmpty()){
                 return client;
+            }else{
+                return clientRepository.save(client);
             }
         }
     }
@@ -54,12 +54,13 @@ public class ClientService {
                 if (client.getAge()!=null) {
                     q.get().setAge(client.getAge());
                 }
-                return clientRepository.save(q.get());
-                
+                clientRepository.save(q.get());
+                return q.get();
+            }else{
+                return client;
             }
             
         }
         return client;
     }
-    
-}
+   }

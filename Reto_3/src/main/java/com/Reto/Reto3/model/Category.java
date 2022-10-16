@@ -28,13 +28,16 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    
     private  Integer idCategory;
-    @Column(name = "Category",length = 50,nullable = false,unique = true)
     private String name;
     private String description;
     
     @OneToMany(mappedBy = "Category", cascade = (CascadeType.PERSIST))
     @JsonIgnoreProperties("Category")
     private List<Motorbike> listmotorbikes;
+
+    public Category(List<Motorbike> listmotorbikes) {
+        this.listmotorbikes = listmotorbikes;
+    }
     
     
     
@@ -42,20 +45,17 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(Integer idCategory) {
-        this.idCategory = idCategory;
-    }
+    
+    
 
-    public Category(Integer idCategory, String name, String description) {
+       public Category(Integer idCategory, String name, String description) {
         this.idCategory = idCategory;
         this.name = name;
         this.description = description;
     }
     
    
-    public Integer getIdCategory() {
-        return idCategory;
-    }
+    
 
     public void setIdCategory(Integer idCategory) {
         this.idCategory = idCategory;
@@ -81,9 +81,11 @@ public class Category implements Serializable {
         return listmotorbikes;
     }
 
-    public void setListmotorbikes(List<Motorbike> listmotorbikes) {
-        this.listmotorbikes = listmotorbikes;
+    public Integer getIdCategory() {
+        return idCategory;
     }
+
+
 
    
 

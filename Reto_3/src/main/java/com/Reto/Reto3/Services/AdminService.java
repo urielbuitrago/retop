@@ -31,12 +31,14 @@ public class AdminService {
            }else{
             Optional<Admin>admin1= adminRepository.getAdmin(admin.getIdAdmin());
             if (admin1.isEmpty()){
-                return adminRepository.save(admin);
+               return admin;
             }else{
-                return admin;
+               return adminRepository.save(admin);
+                  
             }
         }
     }
+
     
     public Admin update(Admin admin){
         if (admin.getIdAdmin()!=null) {
@@ -51,8 +53,10 @@ public class AdminService {
                 if (admin.getEmail()!=null) {
                     q.get().setEmail(admin.getEmail());
                 }
-                return adminRepository.save(q.get());
-                
+                adminRepository.save(q.get());
+                return q.get();
+            }else{
+                return admin;
             }
             
         }

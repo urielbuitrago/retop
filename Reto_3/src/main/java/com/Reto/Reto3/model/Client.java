@@ -26,19 +26,18 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
-    @Column(name = "nombre",length = 50,nullable = false,unique = true)
     private String name;
     private String email;
     private String password;
     private Integer age;
     
-    @OneToMany(cascade = (CascadeType.PERSIST), mappedBy = "client")
-    @JsonIgnoreProperties("client")
-    private List<Message> messages;
+   @OneToMany(cascade = (CascadeType.PERSIST), mappedBy = "client")
+   @JsonIgnoreProperties("client")
+   private List<Message> messages;
     
-    @OneToMany(cascade = (CascadeType.PERSIST), mappedBy = "client")
-    @JsonIgnoreProperties("client")
-    private List<Reservation> reservations;
+  @OneToMany(cascade = (CascadeType.PERSIST), mappedBy = "client")
+  @JsonIgnoreProperties("client")
+   private List<Reservation> reservations;
 
    
    
@@ -46,9 +45,9 @@ public class Client implements Serializable {
     
     
 
-    public Client(List<Message> messages) {
-        this.messages = messages;
-    }
+     public Client(List<Message> messages) {
+      this.messages = messages;
+   }
     
     
     
@@ -64,7 +63,7 @@ public class Client implements Serializable {
     public Client(Integer idClient, String name, String mail, String password, Integer age) {
         this.idClient = idClient;
         this.name = name;
-        this.email = mail;
+        this.email = email;
         this.password = password;
         this.age = age;
     }
@@ -89,13 +88,7 @@ public class Client implements Serializable {
         this.name = name;
     }
 
-    public String getMail() {
-        return getEmail();
-    }
-
-    public void setMail(String mail) {
-        this.setEmail(mail);
-    }
+    
 
     public String getPassword() {
         return password;
@@ -122,20 +115,28 @@ public class Client implements Serializable {
     }
 
     public List<Message> getMessages() {
-        return messages;
+    return messages;
     }
 
     public void setMessages(List<Message> messages) {
-        this.messages = messages;
+    this.messages = messages;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
+   //public void setReservations(List<Reservation> reservations) {
+   //this.reservations = reservations;
+   //}
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
+    //public void setMessages(List<Message> messages) {
+    //this.messages = messages;
+    //}
+
+   //public List<Reservation> getReservations() {
+   //return reservations;
+   //}
+
+    //public void setReservations(List<Reservation> reservations) {
+    //this.reservations = reservations;
+    //}
             
     
 }

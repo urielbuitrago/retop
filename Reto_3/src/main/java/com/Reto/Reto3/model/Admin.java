@@ -20,7 +20,6 @@ public class Admin implements Serializable {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAdmin;
-    @Column(name = "nombre",length = 50,nullable = false,unique = true)
     private String name;
     private String email;
     private String password;
